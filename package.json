@@ -1,0 +1,26 @@
+{
+  "name": "engineer-node-test",
+  "version": "1.0.0",
+  "description": "Q&A app like quora",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devashish-Suthar/engineer-node-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Devashish-Suthar/engineer-node-test/issues"
+  },
+  "homepage": "https://github.com/Devashish-Suthar/engineer-node-test#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.15"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
