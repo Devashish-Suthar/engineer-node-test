@@ -5,7 +5,7 @@ const { QUESTION, ANSWER, USER } = require('../constants/models.constant');
 const answerSchema = new Schema(
   {
     answer: { type: String, required: true },
-    question: {
+    questionRef: {
       type: Schema.Types.ObjectId,
       ref: QUESTION,
     },
