@@ -77,7 +77,6 @@ router.delete(
     try {
       const { questionId } = req.params;
       const question = await Question.findByIdAndDelete(questionId);
-      console.log('question deleted:', question);
       if (question && Object.keys(question).length) {
         return apiHelper.success(
           res,
