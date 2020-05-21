@@ -7,7 +7,7 @@ const createComment = Joi.object().keys({
   userRef: Joi.string().required(),
 });
 
-const updateComment = Joi.object.keys({
+const updateComment = Joi.object().keys({
   comment: Joi.string().required(),
   questionRef: Joi.string().required(),
   answerRef: Joi.string(),

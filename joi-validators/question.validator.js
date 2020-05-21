@@ -5,7 +5,7 @@ const createQuestion = Joi.object().keys({
   userRef: Joi.string().required(),
 });
 
-const updateQuestion = Joi.object.keys({
+const updateQuestion = Joi.object().keys({
   question: Joi.string().required(),
   userRef: Joi.string().required(),
 });

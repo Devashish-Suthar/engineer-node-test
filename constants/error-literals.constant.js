@@ -2,7 +2,11 @@ const ERROR_LITERALS = {
   USER: {
     CREATE_USER: {
       SUCCESS: 'User created successfully!',
+      ALREADY_EXISTS: 'Email already exists in database!',
       FAILURE: 'Unable to create user!',
+    },
+    GET_ALL_USERS: {
+      SUCCESS: 'Users found successfully!',
     },
   },
   QUESTION: {
