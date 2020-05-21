@@ -5,30 +5,36 @@ const ERROR_LITERALS = require('../../constants/error-literals.constant');
 const GLOBAL = require('../../constants/global.constant');
 const ROUTES = require('../../constants/routes.constant');
 const User = require('../../models/user.model');
+const joiMiddleware = require('../../middlewares/joi.middleware');
+const { createUser } = require('../../joi-validators/user.validator');
 
-router.post(`${ROUTES.USER.CREATE_USER.URL}`, async (req, res, next) => {
-  try {
-    const { body } = req;
-    const userInstance = new User({
-      ...body,
-    });
-    const user = await userInstance.save();
-    if (user && Object.keys(user).length) {
-      return apiHelper.success(
+router.post(
+  `${ROUTES.USER.CREATE_USER.URL}`,
+  joiMiddleware(createUser),
+  async (req, res, next) => {
+    try {
+      const { body } = req;
+      const userInstance = new User({
+        ...body,
+      });
+      const user = await userInstance.save();
+      if (user && Object.keys(user).length) {
+        return apiHelper.success(
+          res,
+          { user },
+          ERROR_LITERALS.USER.CREATE_USER.SUCCESS
+        );
+      }
+      return apiHelper.failure(
         res,
-        { user },
-        ERROR_LITERALS.USER.CREATE_USER.SUCCESS
+        [],
+        ERROR_LITERALS.USER.CREATE_USER.FAILURE,
+        GLOBAL.STATUS_CODE.BAD_REQUEST
       );
+    } catch (error) {
+      return apiHelper.failure(res, [error], ERROR_LITERALS.CATCH.ERROR);
     }
-    return apiHelper.failure(
-      res,
-      [],
-      ERROR_LITERALS.USER.CREATE_USER.FAILURE,
-      GLOBAL.STATUS_CODE.BAD_REQUEST
-    );
-  } catch (error) {
-    return apiHelper.failure(res, [error], ERROR_LITERALS.CATCH.ERROR);
   }
-});
+);
 
 module.exports = router;
