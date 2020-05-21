@@ -10,6 +10,14 @@ const ERROR_LITERALS = {
       SUCCESS: 'Question created successfully!',
       FAILURE: 'Unable to create question!',
     },
+    UPDATE_QUESTION: {
+      SUCCESS: 'Question updated successfully!',
+      FAILURE: 'Unable to update question!',
+    },
+    DELETE_QUESTION: {
+      SUCCESS: 'Question deleted successfully!',
+      FAILURE: 'Unable to delete question!',
+    },
   },
   ANSWER: {
     CREATE_ANSWER: {
