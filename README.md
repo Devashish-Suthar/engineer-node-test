@@ -16,4 +16,4 @@
 
 # Postman collection link:-
 
-    https://www.getpostman.com/collections/d3233de04afecbdb6ab7
+    https://www.getpostman.com/collections/2f6959f5e2dd4e7c2c7b

@@ -4,7 +4,7 @@ const apiHelper = require('../../helpers/api.helper');
 const ERROR_LITERALS = require('../../constants/error-literals.constant');
 const GLOBAL = require('../../constants/global.constant');
 const ROUTES = require('../../constants/routes.constant');
-const Comment = require('../../models/answer.model');
+const Comment = require('../../models/comment.model');
 const joiMiddleware = require('../../middlewares/joi.middleware');
 const {
   createComment,
@@ -96,4 +96,30 @@ router.delete(
   }
 );
 
+router.get(
+  `${ROUTES.COMMENT.GET_COMMENTS_BY_QUESTION.URL}`,
+  async (req, res, next) => {
+    try {
+      const { questionId: questionRef } = req.params;
+      const comments = await Comment.find({ questionRef })
+        .populate('questionRef')
+        .populate('answerRef')
+        .populate('userRef');
+      if (comments && comments.length) {
+        return apiHelper.success(
+          res,
+          { comments },
+          ERROR_LITERALS.COMMENT.GET_COMMENT_BY_QUESTION.SUCCESS
+        );
+      }
+      return apiHelper.success(
+        res,
+        { comments: [] },
+        ERROR_LITERALS.COMMON_MESSAGES.NO_DATA_FOUND
+      );
+    } catch (error) {
+      return apiHelper.failure(res, [error], ERROR_LITERALS.CATCH.ERROR);
+    }
+  }
+);
 module.exports = router;
