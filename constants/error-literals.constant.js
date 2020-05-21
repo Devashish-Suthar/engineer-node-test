@@ -22,6 +22,9 @@ const ERROR_LITERALS = {
       SUCCESS: 'Question deleted successfully!',
       FAILURE: 'Unable to delete question!',
     },
+    GET_QUESTION: {
+      SUCCESS: 'Question found successfully!',
+    },
   },
   ANSWER: {
     CREATE_ANSWER: {

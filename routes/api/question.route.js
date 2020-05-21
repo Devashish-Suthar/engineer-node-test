@@ -4,7 +4,6 @@ const apiHelper = require('../../helpers/api.helper');
 const ERROR_LITERALS = require('../../constants/error-literals.constant');
 const GLOBAL = require('../../constants/global.constant');
 const ROUTES = require('../../constants/routes.constant');
-const User = require('../../models/user.model');
 const Question = require('../../models/question.model');
 const joiMiddleware = require('../../middlewares/joi.middleware');
 const {
@@ -97,5 +96,26 @@ router.delete(
     }
   }
 );
+
+router.get(`${ROUTES.QUESTION.GET_QUESTION.URL}`, async (req, res, next) => {
+  try {
+    const { questionId } = req.params;
+    const question = await Question.findById(questionId);
+    if (question && Object.keys(question).length) {
+      return apiHelper.success(
+        res,
+        { question },
+        ERROR_LITERALS.QUESTION.GET_QUESTION.SUCCESS
+      );
+    }
+    return apiHelper.success(
+      res,
+      { question: {} },
+      ERROR_LITERALS.COMMON_MESSAGES.NO_DATA_FOUND
+    );
+  } catch (error) {
+    return apiHelper.failure(res, [error], ERROR_LITERALS.CATCH.ERROR);
+  }
+});
 
 module.exports = router;

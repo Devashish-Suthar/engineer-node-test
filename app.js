@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const { PORT, DB_URI } = require('./configs/env.config');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+mongoose.set('useFindAndModify', false);
 mongoose.connect(
   DB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },

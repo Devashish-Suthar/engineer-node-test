@@ -20,6 +20,9 @@ const ROUTES = {
     GET_ALL_QUESTIONS: {
       URL: '/questions',
     },
+    GET_QUESTION: {
+      URL: '/questions/:questionId',
+    },
   },
   ANSWER: {
     CREATE_ANSWER_BY_QUESTION: {
