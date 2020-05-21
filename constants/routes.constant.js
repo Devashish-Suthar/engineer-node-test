@@ -1,5 +1,8 @@
 const ROUTES = {
   USER: {
+    CREATE_USER: {
+      URL: '/users',
+    },
     GET_ALL_USERS: {
       URL: '/users',
     },
