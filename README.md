@@ -15,3 +15,5 @@
     node app.js
 
 # Postman collection link:-
+
+    https://www.getpostman.com/collections/d3233de04afecbdb6ab7

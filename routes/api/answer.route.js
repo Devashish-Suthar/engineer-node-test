@@ -25,13 +25,13 @@ router.post(
         return apiHelper.success(
           res,
           { answer },
-          ERROR_LITERALS.ANSWER.CREATE_ANSWER.SUCCESS
+          ERROR_LITERALS.ANSWER.CREATE_ANSWER_BY_QUESTION.SUCCESS
         );
       }
       return apiHelper.failure(
         res,
         [],
-        ERROR_LITERALS.ANSWER.CREATE_ANSWER.FAILURE,
+        ERROR_LITERALS.ANSWER.CREATE_ANSWER_BY_QUESTION.FAILURE,
         GLOBAL.STATUS_CODE.BAD_REQUEST
       );
     } catch (error) {
