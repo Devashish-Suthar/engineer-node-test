@@ -46,17 +46,17 @@ router.put(
   async (req, res, next) => {
     try {
       const { body } = req;
-      const { questionId } = req.params;
-      const question = await Question.findByIdAndUpdate(
-        questionId,
+      const { answerId } = req.params;
+      const answer = await Answer.findByIdAndUpdate(
+        answerId,
         { ...body },
         { new: true }
       );
-      if (question && Object.keys(question).length) {
+      if (answer && Object.keys(answer).length) {
         return apiHelper.success(
           res,
-          { question },
-          ERROR_LITERALS.QUESTION.UPDATE_QUESTION.SUCCESS
+          { answer },
+          ERROR_LITERALS.ANSWER.UPDATE_ANSWER_BY_QUESTION.SUCCESS
         );
       }
       return apiHelper.failure(
@@ -71,25 +71,47 @@ router.put(
   }
 );
 
-router.delete(
-  `${ROUTES.QUESTION.DELETE_QUESTION.URL}`,
+router.delete(`${ROUTES.ANSWER.DELETE_ANSWER.URL}`, async (req, res, next) => {
+  try {
+    const { answerId } = req.params;
+    const answer = await Answer.findByIdAndDelete(answerId);
+    if (answer && Object.keys(answer).length) {
+      return apiHelper.success(
+        res,
+        { answer },
+        ERROR_LITERALS.ANSWER.DELETE_ANSWER.SUCCESS
+      );
+    }
+    return apiHelper.failure(
+      res,
+      [],
+      ERROR_LITERALS.ANSWER.DELETE_ANSWER.FAILURE,
+      GLOBAL.STATUS_CODE.BAD_REQUEST
+    );
+  } catch (error) {
+    return apiHelper.failure(res, [error], ERROR_LITERALS.CATCH.ERROR);
+  }
+});
+
+router.get(
+  `${ROUTES.ANSWER.GET_ANSWERS_BY_QUESTION.URL}`,
   async (req, res, next) => {
     try {
-      const { questionId } = req.params;
-      const question = await Question.findByIdAndDelete(questionId);
-      console.log('question deleted:', question);
-      if (question && Object.keys(question).length) {
+      const { questionId: questionRef } = req.params;
+      const answers = await Answer.find({ questionRef })
+        .populate('questionRef')
+        .populate('userRef');
+      if (answers && answers.length) {
         return apiHelper.success(
           res,
-          { question },
-          ERROR_LITERALS.QUESTION.DELETE_QUESTION.SUCCESS
+          { answers },
+          ERROR_LITERALS.ANSWER.GET_ANSWERS_BY_QUESTIONS.SUCCESS
         );
       }
-      return apiHelper.failure(
+      return apiHelper.success(
         res,
-        [],
-        ERROR_LITERALS.QUESTION.DELETE_QUESTION.FAILURE,
-        GLOBAL.STATUS_CODE.BAD_REQUEST
+        { answers: [] },
+        ERROR_LITERALS.COMMON_MESSAGES.NO_DATA_FOUND
       );
     } catch (error) {
       return apiHelper.failure(res, [error], ERROR_LITERALS.CATCH.ERROR);

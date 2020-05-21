@@ -27,15 +27,37 @@ const ERROR_LITERALS = {
     },
   },
   ANSWER: {
-    CREATE_ANSWER: {
+    CREATE_ANSWER_BY_QUESTION: {
       SUCCESS: 'Answer added to question successfully!',
       FAILURE: 'Unable to add answers!',
+    },
+    UPDATE_ANSWER_BY_QUESTION: {
+      SUCCESS: 'Answer updated according to question successfully!',
+      FAILURE: 'Unable to updated answers!',
+    },
+    GET_ANSWERS_BY_QUESTIONS: {
+      SUCCESS: 'Answers found according to question!',
+    },
+    DELETE_ANSWER: {
+      SUCCESS: 'Answer deleted successfully!',
+      FAILURE: 'Unable to delete answers!',
     },
   },
   COMMENT: {
     CREATE_COMMENT: {
       SUCCESS: 'Comment added to question successfully!',
       FAILURE: 'Unable to add comment!',
+    },
+    UPDATE_COMMENT: {
+      SUCCESS: 'Comment update to question successfully!',
+      FAILURE: 'Unable to update comment!',
+    },
+    DELETE_COMMENT: {
+      SUCCESS: 'Comment deleted successfully!',
+      FAILURE: 'Unable to delete comment!',
+    },
+    GET_COMMENT_BY_QUESTION: {
+      SUCCESS: 'Comment found according to question!',
     },
   },
   COMMON_MESSAGES: {

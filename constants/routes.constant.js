@@ -38,5 +38,19 @@ const ROUTES = {
       URL: '/questions/:questionId/answers',
     },
   },
+  COMMENT: {
+    CREATE_COMMENT: {
+      URL: '/comments',
+    },
+    UPDATE_COMMENT: {
+      URL: '/comments/:commentId',
+    },
+    DELETE_COMMENT: {
+      URL: '/comments/:commentId',
+    },
+    GET_COMMENTS_BY_QUESTION: {
+      URL: '/questions/:questionId/comments',
+    },
+  },
 };
 module.exports = ROUTES;
